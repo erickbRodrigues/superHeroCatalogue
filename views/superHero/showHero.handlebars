@@ -1,0 +1,71 @@
+<div class="container mt-2">
+  {{#if messages.success}}
+  <div class="text-success">
+    {{#each messages.success}}
+    <div>{{msg}}</div>
+    {{/each}}
+  </div>
+  {{/if}} {{#if messages.error}}
+  <div class="text-danger">
+    {{#each messages.error}}
+    <div>{{msg}}</div>
+    {{/each}}
+  </div>
+  {{/if}}
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel">
+        <div class="panel-heading"><h2>{{superHero.name}} - {{superHero.alias}}</h2></div>
+        <div class="panel-body">
+          <div class="panel">
+            <div class="panel-body">
+              <div class="col-sm-12">
+                    <div class="panel">
+                        <div class="panel-heading"><h4>Protection Area</h4></div>
+                        <div class="panel-body">
+                            <div class="col-sm-3">
+                                <label for="protectName">Name</label>
+                                <input type="text" name="protectName" id="protectName" class="form-control" readonly value="{{superHero.ProtectionArea.name}}"><br/>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="latitude">Latitude</label>
+                                <input type="text" name="latitude" id="latitude" class="form-control" readonly value="{{superHero.ProtectionArea.lat}}"><br/>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="longitude">Longitude</label>
+                                <input type="text" name="longitude" id="longitude" class="form-control" readonly value="{{superHero.ProtectionArea.long}}"><br/>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="radius">Radius (km)</label>
+                                <input type="text" name="radius" id="radius" class="form-control" readonly value="{{superHero.ProtectionArea.radius}}"><br/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-heading"><h4>Super Powers</h4></div>
+                        <div class="panel-body">
+                            <div class="col-sm-12">
+                                <div class="checkbox col-sm-3">
+                                    <ul>
+                                {{#each superHero.SuperPower}}
+                                        <li>{{name}}</li>
+                                {{/each}}
+                                    </ul>
+                                    {{!-- <input type="checkbox" name="superPowers" id="power{{@index}}" value="{{_id}}" checked> --}}
+                                    <label for="power{{@index}}">{{name}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <label style="visibility:hidden">Edit</label>
+                    <a href="/editHero/{{superHero._id}}"class="form-control btn">Edit</a>
+                    <hr>
+                    <form method="POST" action="/rmHero"><input type="hidden" name="id" id="id" value="{{superHero._id}}"><button type="submit" class="form-control btn btn-outline-dark">Remove</button></form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

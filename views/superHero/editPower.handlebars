@@ -1,0 +1,39 @@
+<div class="container mt-2">
+  {{#if messages.success}}
+  <div class="text-success">
+    {{#each messages.success}}
+    <div>{{msg}}</div>
+    {{/each}}
+  </div>
+  {{/if}} {{#if messages.error}}
+  <div class="text-danger">
+    {{#each messages.error}}
+    <div>{{msg}}</div>
+    {{/each}}
+  </div>
+  {{/if}}
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel">
+        <div class="panel-heading"><h2>Editing Super Power</h2></div>
+        <div class="panel-body">
+          <div class="panel">
+            <div class="panel-body">
+              <div class="col-sm-12">
+                <form method="POST" class="form-horizontal">
+                  <input type="hidden" name="powerid" value="{{superPower._id}}">
+                  <label for="name">Name</label>
+                  <input type="text" name="name" id="name" class="form-control" value="{{superPower.name}}">
+                  <label for="description">Description</label>
+                  <input type="text" name="description" id="description" class="form-control" value="{{superPower.description}}"><br/>
+                  <label style="visibility:hidden">Save</label>
+                  <button type="submit" class="form-control btn">Save</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

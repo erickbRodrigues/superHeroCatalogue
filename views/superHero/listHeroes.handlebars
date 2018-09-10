@@ -1,0 +1,72 @@
+<div class="container mt-2">
+  {{#if messages.success}}
+  <div class="text-success">
+    {{#each messages.success}}
+    <div>{{msg}}</div>
+    {{/each}}
+  </div>
+  {{/if}} {{#if messages.error}}
+  <div class="text-danger">
+    {{#each messages.error}}
+    <div>{{msg}}</div>
+    {{/each}}
+  </div>
+  {{/if}}
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel">
+        <div class="panel-heading"><h2>Super Heroes List</h2></div>
+        <div class="panel-body">
+          <a href="/addHero">
+            <div class="panel">
+              <div class="panel-heading">
+                Add Hero
+              </div>
+            </div>
+          </a>
+          <nav aria-label="Page navigation">
+            <ul class="pagination">
+              <li>
+                <a href="/listHeroes/{{#minusOne actualPage}}{{/minusOne}}" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              {{#each pages}}
+                <li><a href="/listHeroes/{{page}}">{{page}}</a></li>
+              {{/each}}
+              <li>
+                <a href="/listHeroes/{{#plusOne actualPage lastPage}}{{/plusOne}}" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          {{#each superHeroes}}
+          <div class="panel">
+            <div class="panel-heading"><a href="/viewHero/{{_id}}"><h3>{{alias}} - {{name}}</h3></a></div>
+            <div class="panel-body">
+              <div class="col-sm-12">
+                <h4>Protection Area</h4>
+                <div class="col-sm-12">
+                  <p>Latitude: {{ProtectionArea.lat}} </p>
+                  <p>Longitude: {{ProtectionArea.long}} </p>
+                  <p>Radius: {{ProtectionArea.radius}} km </p>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <h4>Super Powers</h4>
+                <div class="col-sm-12">
+                {{#each SuperPower}}
+                  <p>{{name}}</p>
+                  <ul><li>{{description}}</li></ul>
+                {{/each}}
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

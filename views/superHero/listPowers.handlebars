@@ -1,0 +1,64 @@
+<div class="container mt-2">
+  {{#if messages.success}}
+  <div class="text-success">
+    {{#each messages.success}}
+    <div>{{msg}}</div>
+    {{/each}}
+  </div>
+  {{/if}} {{#if messages.error}}
+  <div class="text-danger">
+    {{#each messages.error}}
+    <div>{{msg}}</div>
+    {{/each}}
+  </div>
+  {{/if}}
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel">
+        <div class="panel-heading"><h2>Super Powers List</h2></div>
+        <div class="panel-body">
+          <a href="/addPower">
+            <div class="panel">
+              <div class="panel-heading">
+                Add Power
+              </div>
+            </div>
+          </a>
+          <nav aria-label="Page navigation">
+            <ul class="pagination">
+              <li>
+                <a href="/listPowers/{{#minusOne actualPage}}{{/minusOne}}" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              {{#each pages}}
+                <li><a href="/listPowers/{{page}}">{{page}}</a></li>
+              {{/each}}
+              <li>
+                <a href="/listPowers/{{#plusOne actualPage lastPage}}{{/plusOne}}" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <table id="powerList" class="table table-bordered order-table">
+            <thead>
+              <th>Name</th>
+              <th>Description</th>
+              <th></th>
+            </thead>
+            <tbody>
+              {{#each superPowers}}
+              <tr>
+                <td><a href="/viewPower/{{_id}}">{{name}}</a></td>
+                <td>{{description}}</td>
+                <td> <form method="POST" action="/rmPower"><input type="hidden" name="id" id="id" value="{{_id}}"><button type="submit" class="btn btn-outline-dark"><i class="fas fa-backspace"></i>Remove</button></form> </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="container mt-2">
+  {{#if messages.success}}
+    <div class="text-success">
+      {{#each messages.success}}
+        <div>{{msg}}</div>
+      {{/each}}
+    </div>
+  {{/if}}
+  {{#if messages.error}}
+    <div class="text-danger">
+      {{#each messages.error}}
+        <div>{{msg}}</div>
+      {{/each}}
+    </div>
+  {{/if}}
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel">
+        <div class="panel-heading"><span style="font-size:1.75em;">Create New User</span></div>
+        <div class="panel-body">
+          <form method="POST" class="form-horizontal" action="/users">
+            <div class="col-sm-4">
+              <label for="username">Username</label>
+              <input type="text" name="username" id="username" class="form-control">
+            </div>
+            <div class="col-sm-4">
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" class="form-control">
+            </div>
+            <div class="col-sm-2">
+              <label for="role">Role</label>
+              <select name="role" id="role" class="form-control">
+                <option value="Admin">Admin</option>
+                <option value="Standard">Standard</option>
+              </select>
+            </div>
+            <div class="col-sm-2">
+              <label style="visibility:hidden">Create</label>
+              <button type="submit" class="form-control btn">Create</button>
+            </div>
+          </form>
+          <nav aria-label="Page navigation">
+            <ul class="pagination">
+              <li>
+                <a href="/users/{{#minusOne actualPage}}{{/minusOne}}" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              {{#each pages}}
+                <li><a href="/users/{{page}}">{{page}}</a></li>
+              {{/each}}
+              <li>
+                <a href="/users/{{#plusOne actualPage lastPage}}{{/plusOne}}" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="panel-heading"><span style="font-size:1.75em;">User List</span></div>
+          {{#if users}}
+          <table id="users" class="table table-bordered order-table">
+            <thead>
+              <th>Username</th>
+              <th>Role</th>
+              <th></th>
+            </thead>
+            <tbody>
+              {{#each users}}
+              <tr>
+                <td>{{username}}</td>
+                <td>{{#fixRole role}}{{/fixRole}}</td>
+                <td> <form id="rmUser" method="POST" action="/rmusers"><input type="hidden" name="usernaame" id="usernaame" value="{{username}}"><button type="submit" onclick="this.parentElement.submit()" class="btn btn-outline-dark"><i class="fas fa-backspace"></i> Remove</button></form></td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

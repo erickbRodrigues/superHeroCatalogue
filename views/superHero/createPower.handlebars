@@ -1,0 +1,38 @@
+<div class="container mt-2">
+  {{#if messages.success}}
+  <div class="text-success">
+    {{#each messages.success}}
+    <div>{{msg}}</div>
+    {{/each}}
+  </div>
+  {{/if}} {{#if messages.error}}
+  <div class="text-danger">
+    {{#each messages.error}}
+    <div>{{msg}}</div>
+    {{/each}}
+  </div>
+  {{/if}}
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel">
+        <div class="panel-heading"><h2>Create Super Power</h2></div>
+        <div class="panel-body">
+          <div class="panel">
+            <div class="panel-body">
+              <div class="col-sm-12">
+                  <form method="POST" class="form-horizontal">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" class="form-control"><br/>
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description" class="form-control" rows="8"></textarea>
+                    <label style="visibility:hidden">Create</label>
+                    <button tpe="submit" class="form-control btn">Create</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
